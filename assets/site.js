@@ -1,6 +1,6 @@
 (() => {
-  const button = document.querySelector(".menu-toggle");
-  const nav = document.getElementById("mobile-nav");
+  const button = document.querySelector(".menu");
+  const nav = document.getElementById("mobile");
   if (!button || !nav) return;
 
   button.addEventListener("click", () => {
