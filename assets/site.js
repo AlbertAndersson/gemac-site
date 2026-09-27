@@ -1,17 +1,20 @@
-const menuButton = document.querySelector('.menu-toggle');
-const mobileNav = document.querySelector('#mobile-nav');
-if (menuButton && mobileNav) {
-  menuButton.addEventListener('click', () => {
-    const expanded = menuButton.getAttribute('aria-expanded') === 'true';
-    menuButton.setAttribute('aria-expanded', String(!expanded));
-    menuButton.setAttribute('aria-label', expanded ? 'Öppna menyn' : 'Stäng menyn');
-    mobileNav.hidden = expanded;
+(() => {
+  const button = document.querySelector(".menu-toggle");
+  const nav = document.getElementById("mobile-nav");
+  if (!button || !nav) return;
+
+  button.addEventListener("click", () => {
+    const open = button.getAttribute("aria-expanded") === "true";
+    button.setAttribute("aria-expanded", String(!open));
+    button.setAttribute("aria-label", open ? "Öppna menyn" : "Stäng menyn");
+    nav.hidden = open;
   });
-  mobileNav.addEventListener('click', event => {
-    if (event.target.closest('a')) {
-      menuButton.setAttribute('aria-expanded', 'false');
-      menuButton.setAttribute('aria-label', 'Öppna menyn');
-      mobileNav.hidden = true;
-    }
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      button.setAttribute("aria-expanded", "false");
+      button.setAttribute("aria-label", "Öppna menyn");
+      nav.hidden = true;
+    });
   });
-}
+})();
